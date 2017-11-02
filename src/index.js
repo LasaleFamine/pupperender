@@ -53,8 +53,6 @@ const pupperender = async (url, timeout) => {
 module.exports.makeMiddleware = options => {
 	const timeout = options.timeout || 11000; // ms
 
-	console.log(timeout);
-
 	const userAgentPattern =
       options.userAgentPattern || new RegExp(botUserAgents.join('|'), 'i');
 	const excludeUrlPattern = options.excludeUrlPattern ||
