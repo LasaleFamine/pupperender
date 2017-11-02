@@ -3,6 +3,14 @@
 const puppeteer = require('puppeteer');
 
 /**
+ * Log if DEBUG flag was passed
+ * @param {Boolean} DEBUG
+ * @param {string} msg
+ */
+const logger = (DEBUG, msg) =>
+	DEBUG ? console.info(msg) : null;
+
+/**
  * A default set of user agent patterns for bots/crawlers that do not perform
  * well with pages that require JavaScript.
  */
@@ -51,6 +59,7 @@ const pupperender = async (url, timeout) => {
 };
 
 module.exports.makeMiddleware = options => {
+	const DEBUG = options.debug;
 	const timeout = options.timeout || 11000; // ms
 
 	const userAgentPattern =
@@ -59,14 +68,14 @@ module.exports.makeMiddleware = options => {
       new RegExp(`\\.(${staticFileExtensions.join('|')})$`, 'i');
 
 	return function (req, res, next) {
-		console.info('[pupperender middleware] USER AGENT:', req.headers['user-agent']);
+		logger(DEBUG, `[pupperender middleware] USER AGENT: ${req.headers['user-agent']}`);
 		if (!userAgentPattern.test(req.headers['user-agent']) ||
 					excludeUrlPattern.test(req.path)) {
 			return next();
 		}
 
 		const incomingUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-		console.info('[pupperender middleware] puppeterize url:', incomingUrl);
+		logger(DEBUG, `[pupperender middleware] puppeterize url: ${incomingUrl}`);
 		pupperender(incomingUrl, timeout)
 				.then(content => {
 					res.set('Pupperender', 'true');
