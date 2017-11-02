@@ -1,4 +1,6 @@
 # pupperender
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/LasaleFamine/pupperender.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/LasaleFamine/pupperender.svg?branch=master)](https://travis-ci.org/LasaleFamine/pupperender) [![Build status](https://ci.appveyor.com/api/projects/status/7adc8sxp20kgw10v?svg=true)](https://ci.appveyor.com/project/LasaleFamine/pupperender) [![codecov](https://codecov.io/gh/LasaleFamine/pupperender/badge.svg?branch=master)](https://codecov.io/gh/LasaleFamine/pupperender?branch=master)
 
 > ExpressJs middleware for rendering PWA to bots using Puppeteer
