@@ -8,6 +8,7 @@ install:
 test_script:
   - node --version
   - yarn --version
-  - yarn test
+  - yarn
+  - yarn test:veyor
 
 build: off

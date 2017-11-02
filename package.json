@@ -20,7 +20,8 @@
 	"scripts": {
 		"release": "git pull && standard-version",
 		"test": "xo && nyc ava",
-		"test:travis": "yarn test && nyc report --reporter=text-lcov > coverage.lcov && codecov"
+		"test:travis": "yarn test && nyc report --reporter=text-lcov > coverage.lcov && codecov",
+		"test:veyor": "ava"
 	},
 	"files": [
 		"src"
