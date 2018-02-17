@@ -4,7 +4,7 @@ const express = require('express');
 const supertest = require('supertest');
 const test = require('ava');
 
-const pupperender = require('../src/');
+const pupperender = require('./../src/');
 
 /**
  * Start the given Express app on localhost with a random port.
@@ -116,7 +116,7 @@ test('respects custom exclude url pattern', async t => {
 });
 
 test('forwards page error status and body', async t => {
-  // This proxy always returns an error.
+	// This proxy always returns an error.
 	const appUrl = await listen(makeAppError({}));
 
 	const res = await get(bot, appUrl, '/error');
