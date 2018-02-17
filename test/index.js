@@ -4,7 +4,7 @@ const express = require('express');
 const supertest = require('supertest');
 const test = require('ava');
 
-const pupperender = require('./../src/');
+const pupperender = require('./../src');
 
 /**
  * Start the given Express app on localhost with a random port.
