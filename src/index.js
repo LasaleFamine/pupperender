@@ -77,16 +77,16 @@ module.exports.makeMiddleware = options => {
 		const incomingUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 		logger(DEBUG, `[pupperender middleware] puppeterize url: ${incomingUrl}`);
 		pupperender(incomingUrl, timeout)
-				.then(content => {
-					res.set('Pupperender', 'true');
-					res.send(content);
-				})
-				.catch(err => {
-					console.error(
-						`[pupperender middleware] error fetching ${incomingUrl}`,
-						err
-					);
-					return next();
-				});
+			.then(content => { // eslint-disable-line promise/prefer-await-to-then
+				res.set('Pupperender', 'true');
+				res.send(content);
+			})
+			.catch(err => {
+				console.error(
+					`[pupperender middleware] error fetching ${incomingUrl}`,
+					err
+				);
+				return next();
+			});
 	};
 };
