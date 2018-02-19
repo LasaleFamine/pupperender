@@ -47,7 +47,7 @@
     "nyc": "11.4.1",
     "standard-version": "4.3.0",
     "supertest": "3.0.0",
-    "xo": "0.20.2"
+    "xo": "0.20.3"
   },
   "xo": {
     "rules": {
