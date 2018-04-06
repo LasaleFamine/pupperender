@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/LasaleFamine/pupperender/compare/v1.0.0...v1.1.0) (2018-04-06)
+
+
+### Bug Fixes
+
+* **package:** update puppeteer to version 1.1.0 ([d719e73](https://github.com/LasaleFamine/pupperender/commit/d719e73))
+* **package:** update puppeteer to version 1.1.1 ([936b1fc](https://github.com/LasaleFamine/pupperender/commit/936b1fc))
+* **package:** update puppeteer to version 1.2.0 ([5cbdd57](https://github.com/LasaleFamine/pupperender/commit/5cbdd57))
+
+
+### Features
+
+* **waituntil:** added waituntil prop when open page ([56b24d2](https://github.com/LasaleFamine/pupperender/commit/56b24d2))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/LasaleFamine/pupperender/compare/v0.1.4...v1.0.0) (2018-01-16)
 
