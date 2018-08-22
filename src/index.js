@@ -80,13 +80,16 @@ module.exports.makeMiddleware = options => {
 		logger(DEBUG, `[pupperender middleware] puppeterize url: ${incomingUrl}`);
 		
 		if (useCache && cache[incomingUrl]) {
+			logger(DEBUG, `Cache hit for ${incomingUrl}.`)
 			res.set('Pupperender', 'true');
 			res.send(cache[incomingUrl]);
+			return
 		}
 		
 		pupperender(incomingUrl, timeout)
 			.then(content => { // eslint-disable-line promise/prefer-await-to-then
 				cache[incomingUrl] = content;
+				logger(DEBUG, `Cache warmed for ${incomingUrl}.`)
 				res.set('Pupperender', 'true');
 				res.send(content);
 			})
