@@ -44,6 +44,8 @@ properties:
 | `excludeUrlPattern` | A set of known static file extensions. [Full list.](https://github.com/LasaleFamine/pupperender/blob/master/src/index.js) | RegExp for excluding requests by the path component of the URL. |
 | `timeout` | `11000` | Millisecond timeout for waiting the page to load. Used by Puppeter. See also the [Puppeter waitFor()](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagewaitforselectororfunctionortimeout-options-args) |
 | `debug` | `false` | DEBUG flag to show some logs |
+| `useCache` | `false` | If the puppeterized content should be cached to speed up subsequent requests. |
+| `cacheTTL` | `3600` | Seconds until cached content is disregarded and puppeterized again. Only considered when `useCache` is `true`. |
 
 
 ## License
