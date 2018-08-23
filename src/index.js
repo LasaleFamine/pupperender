@@ -63,7 +63,7 @@ const cache = {};
 module.exports.makeMiddleware = options => {
 	const DEBUG = options.debug;
 	const timeout = options.timeout || 5000; // ms
-        const useCache = !!options.useCache;
+	const useCache = Boolean(options.useCache);
 	const userAgentPattern =
       options.userAgentPattern || new RegExp(botUserAgents.join('|'), 'i');
 	const excludeUrlPattern = options.excludeUrlPattern ||
@@ -78,18 +78,18 @@ module.exports.makeMiddleware = options => {
 
 		const incomingUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 		logger(DEBUG, `[pupperender middleware] puppeterize url: ${incomingUrl}`);
-		
+
 		if (useCache && cache[incomingUrl]) {
-			logger(DEBUG, `Cache hit for ${incomingUrl}.`)
+			logger(DEBUG, `Cache hit for ${incomingUrl}.`);
 			res.set('Pupperender', 'true');
 			res.send(cache[incomingUrl]);
-			return
+			return;
 		}
-		
+
 		pupperender(incomingUrl, timeout)
 			.then(content => { // eslint-disable-line promise/prefer-await-to-then
 				cache[incomingUrl] = content;
-				logger(DEBUG, `Cache warmed for ${incomingUrl}.`)
+				logger(DEBUG, `Cache warmed for ${incomingUrl}.`);
 				res.set('Pupperender', 'true');
 				res.send(content);
 			})
