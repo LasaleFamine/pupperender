@@ -74,6 +74,29 @@ test('puppeterize getting a route as bot', async t => {
 	t.true(Boolean(res.get('Pupperender')));
 });
 
+test('puppeterize is being cached if configured', async t => {
+	const appUrl = await listen(makeApp({useCache: true}));
+
+	const res = await get(bot, appUrl, '/foo');
+	t.is(res.status, 200);
+	t.false(Boolean(res.get('Expires')));
+	const cachedRes = await get(bot, appUrl, '/foo');
+	t.is(cachedRes.status, 200);
+	t.true(Boolean(cachedRes.get('Expires')));
+});
+
+test('cache respects cache timeout', async t => {
+	const appUrl = await listen(makeApp({useCache: true, cacheTTL: 1}));
+
+	const res = await get(bot, appUrl, '/foo');
+	t.is(res.status, 200);
+	t.false(Boolean(res.get('Expires')));
+	await new Promise(resolve => setTimeout(resolve, 2000));
+	const cachedRes = await get(bot, appUrl, '/foo');
+	t.is(cachedRes.status, 200);
+	t.false(Boolean(cachedRes.get('Expires')));
+});
+
 test('excludes static file paths by default', async t => {
 	const appUrl = await listen(makeApp({}));
 
