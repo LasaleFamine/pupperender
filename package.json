@@ -1,6 +1,6 @@
 {
   "name": "pupperender",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "ExpressJs middleware for rendering PWA to bots using Puppeteer.",
   "license": "MIT",
   "repository": "LasaleFamine/pupperender",

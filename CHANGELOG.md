@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/LasaleFamine/pupperender/compare/v1.2.0...v1.2.1) (2019-01-03)
+
+
+### Bug Fixes
+
+* **package:** update puppeteer to version 1.11.0 ([de61119](https://github.com/LasaleFamine/pupperender/commit/de61119)), closes [#46](https://github.com/LasaleFamine/pupperender/issues/46)
+* **package:** update puppeteer to version 1.8.0 ([5f1430c](https://github.com/LasaleFamine/pupperender/commit/5f1430c))
+* **package:** update puppeteer to version 1.9.0 ([3044845](https://github.com/LasaleFamine/pupperender/commit/3044845))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/LasaleFamine/pupperender/compare/v1.1.1...v1.2.0) (2018-08-23)
 
