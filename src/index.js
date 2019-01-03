@@ -134,10 +134,10 @@ module.exports.makeMiddleware = options => {
 				res.set('Pupperender', 'true');
 				res.send(content);
 			})
-			.catch(err => {
+			.catch(error => {
 				console.error(
 					`[pupperender middleware] error fetching ${incomingUrl}`,
-					err
+					error
 				);
 				return next();
 			});
