@@ -34,8 +34,6 @@ const botUserAgents = [
 
 module.exports.botUserAgents = botUserAgents;
 
-/* eslint-disable no-multi-spaces */
-
 /**
  * A default set of file extensions for static assets that do not need to be
  * proxied.
