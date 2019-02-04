@@ -38,16 +38,16 @@
     "bot"
   ],
   "dependencies": {
-    "puppeteer": "1.11.0"
+    "puppeteer": "1.12.1"
   },
   "devDependencies": {
-    "ava": "1.1.0",
+    "ava": "1.2.0",
     "codecov": "3.1.0",
     "express": "4.16.4",
     "nyc": "13.1.0",
     "standard-version": "4.4.0",
-    "supertest": "3.3.0",
-    "xo": "0.23.0"
+    "supertest": "3.4.2",
+    "xo": "0.24.0"
   },
   "xo": {
     "rules": {
