@@ -41,7 +41,7 @@
     "puppeteer": "1.12.1"
   },
   "devDependencies": {
-    "ava": "1.2.0",
+    "ava": "1.2.1",
     "codecov": "3.1.0",
     "express": "4.16.4",
     "nyc": "13.2.0",
