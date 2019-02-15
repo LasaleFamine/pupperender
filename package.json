@@ -45,7 +45,7 @@
     "codecov": "3.2.0",
     "express": "4.16.4",
     "nyc": "13.2.0",
-    "standard-version": "4.4.0",
+    "standard-version": "5.0.0",
     "supertest": "3.4.2",
     "xo": "0.24.0"
   },
