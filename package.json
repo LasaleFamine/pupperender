@@ -38,14 +38,14 @@
     "bot"
   ],
   "dependencies": {
-    "puppeteer": "1.12.2"
+    "puppeteer": "1.13.0"
   },
   "devDependencies": {
-    "ava": "1.2.1",
-    "codecov": "3.2.0",
+    "ava": "1.4.0",
+    "codecov": "3.3.0",
     "express": "4.16.4",
     "nyc": "13.3.0",
-    "standard-version": "4.4.0",
+    "standard-version": "5.0.2",
     "supertest": "3.4.2",
     "xo": "0.24.0"
   },
