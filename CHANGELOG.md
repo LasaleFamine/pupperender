@@ -1,6 +1,19 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.2.3](https://github.com/LasaleFamine/pupperender/compare/v1.2.2...v1.2.3) (2019-09-13)
+
+
+### Bug Fixes
+
+* **package:** update dependencies ([e625214](https://github.com/LasaleFamine/pupperender/commit/e625214))
+* **package:** update dependencies ([#86](https://github.com/LasaleFamine/pupperender/issues/86)) ([9235aa8](https://github.com/LasaleFamine/pupperender/commit/9235aa8))
+* **package:** update puppeteer to version 1.15.0 ([b31cdfe](https://github.com/LasaleFamine/pupperender/commit/b31cdfe))
+* **package:** update puppeteer to version 1.16.0 ([8a64175](https://github.com/LasaleFamine/pupperender/commit/8a64175))
+* **package:** update puppeteer to version 1.17.0 ([179d001](https://github.com/LasaleFamine/pupperender/commit/179d001))
+* **package:** update puppeteer to version 1.19.0 ([8cecfd6](https://github.com/LasaleFamine/pupperender/commit/8cecfd6)), closes [#82](https://github.com/LasaleFamine/pupperender/issues/82)
+* **package:** update puppeteer to version 1.19.0 ([#84](https://github.com/LasaleFamine/pupperender/issues/84)) ([9f62d70](https://github.com/LasaleFamine/pupperender/commit/9f62d70))
 
 ## [1.2.2](https://github.com/LasaleFamine/pupperender/compare/v1.2.1...v1.2.2) (2019-04-13)
 
