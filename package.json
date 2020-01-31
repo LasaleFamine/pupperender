@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "ava": "2.4.0",
-    "codecov": "3.6.1",
+    "codecov": "3.6.3",
     "express": "4.17.1",
     "nyc": "15.0.0",
     "standard-version": "7.0.1",
