@@ -44,7 +44,7 @@
     "ava": "2.4.0",
     "codecov": "3.6.1",
     "express": "4.17.1",
-    "nyc": "15.0.0",
+    "nyc": "15.0.1",
     "standard-version": "7.1.0",
     "supertest": "4.0.2",
     "xo": "0.25.3"
