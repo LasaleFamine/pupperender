@@ -7,8 +7,8 @@ const puppeteer = require('puppeteer');
  * @param {Boolean} DEBUG
  * @param {string} msg
  */
-const logger = (DEBUG, msg) =>
-	DEBUG ? console.info(msg) : null;
+const logger = (DEBUG, message) =>
+	DEBUG ? console.info(message) : null;
 
 /**
  * A default set of user agent patterns for bots/crawlers that do not perform
@@ -104,21 +104,21 @@ module.exports.makeMiddleware = options => {
 	const excludeUrlPattern = options.excludeUrlPattern ||
       new RegExp(`\\.(${staticFileExtensions.join('|')})$`, 'i');
 
-	return function (req, res, next) {
-		logger(DEBUG, `[pupperender middleware] USER AGENT: ${req.headers['user-agent']}`);
-		if (!userAgentPattern.test(req.headers['user-agent']) ||
-					excludeUrlPattern.test(req.path)) {
+	return function (request, response, next) {
+		logger(DEBUG, `[pupperender middleware] USER AGENT: ${request.headers['user-agent']}`);
+		if (!userAgentPattern.test(request.headers['user-agent']) ||
+					excludeUrlPattern.test(request.path)) {
 			return next();
 		}
 
-		const incomingUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+		const incomingUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
 		logger(DEBUG, `[pupperender middleware] puppeterize url: ${incomingUrl}`);
 		if (useCache && cache[incomingUrl] &&
 					Date.now() <= cache[incomingUrl].expiresAt) {
 			logger(DEBUG, `[pupperender middleware] Cache hit for ${incomingUrl}.`);
-			res.set('Pupperender', 'true');
-			res.set('Expires', new Date(cache[incomingUrl].expiresAt).toUTCString());
-			res.send(cache[incomingUrl].data);
+			response.set('Pupperender', 'true');
+			response.set('Expires', new Date(cache[incomingUrl].expiresAt).toUTCString());
+			response.send(cache[incomingUrl].data);
 			return;
 		}
 
@@ -129,8 +129,8 @@ module.exports.makeMiddleware = options => {
 					data: content
 				};
 				logger(DEBUG, `[pupperender middleware] Cache warmed for ${incomingUrl}.`);
-				res.set('Pupperender', 'true');
-				res.send(content);
+				response.set('Pupperender', 'true');
+				response.send(content);
 			})
 			.catch(error => {
 				console.error(

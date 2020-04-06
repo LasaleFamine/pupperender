@@ -28,7 +28,7 @@ async function listen(app) {
 function makeApp(options) {
 	return express()
 		.use(pupperender.makeMiddleware(options))
-		.use((req, res) => res.end('fallthrough'));
+		.use((request, response) => response.end('fallthrough'));
 }
 
 /**
@@ -38,9 +38,9 @@ function makeApp(options) {
  */
 function makeAppError(options) {
 	return express()
-		.use('/error', (req, res) => res.status(500).end('proxy error'))
+		.use('/error', (request, response) => response.status(500).end('proxy error'))
 		.use(pupperender.makeMiddleware(options))
-		.use((req, res) => res.end('fallthrough'));
+		.use((request, response) => response.end('fallthrough'));
 }
 
 const bot = 'slackbot';
@@ -69,80 +69,80 @@ test('throws if no object conf given', t => {
 test('puppeterize getting a route as bot', async t => {
 	const appUrl = await listen(makeApp({}));
 
-	const res = await get(bot, appUrl, '/foo');
-	t.is(res.status, 200);
-	t.true(Boolean(res.get('Pupperender')));
+	const response = await get(bot, appUrl, '/foo');
+	t.is(response.status, 200);
+	t.true(Boolean(response.get('Pupperender')));
 });
 
 test('puppeterize is being cached if configured', async t => {
 	const appUrl = await listen(makeApp({useCache: true}));
 
-	const res = await get(bot, appUrl, '/foo');
-	t.is(res.status, 200);
-	t.false(Boolean(res.get('Expires')));
-	const cachedRes = await get(bot, appUrl, '/foo');
-	t.is(cachedRes.status, 200);
-	t.true(Boolean(cachedRes.get('Expires')));
+	const response = await get(bot, appUrl, '/foo');
+	t.is(response.status, 200);
+	t.false(Boolean(response.get('Expires')));
+	const cachedResponse = await get(bot, appUrl, '/foo');
+	t.is(cachedResponse.status, 200);
+	t.true(Boolean(cachedResponse.get('Expires')));
 });
 
 test('cache respects cache timeout', async t => {
 	const appUrl = await listen(makeApp({useCache: true, cacheTTL: 1}));
 
-	const res = await get(bot, appUrl, '/foo');
-	t.is(res.status, 200);
-	t.false(Boolean(res.get('Expires')));
+	const response = await get(bot, appUrl, '/foo');
+	t.is(response.status, 200);
+	t.false(Boolean(response.get('Expires')));
 	await new Promise(resolve => setTimeout(resolve, 2000));
-	const cachedRes = await get(bot, appUrl, '/foo');
-	t.is(cachedRes.status, 200);
-	t.false(Boolean(cachedRes.get('Expires')));
+	const cachedResponse = await get(bot, appUrl, '/foo');
+	t.is(cachedResponse.status, 200);
+	t.false(Boolean(cachedResponse.get('Expires')));
 });
 
 test('excludes static file paths by default', async t => {
 	const appUrl = await listen(makeApp({}));
 
-	const res = await get(bot, appUrl, '/foo.png');
-	t.is(res.text, 'fallthrough');
+	const response = await get(bot, appUrl, '/foo.png');
+	t.is(response.text, 'fallthrough');
 });
 
 test('url exclusion only matches url path component', async t => {
 	const appUrl = await listen(makeApp({}));
 
-	const res = await get(bot, appUrl, '/foo.png?params');
-	t.is(res.text, 'fallthrough');
+	const response = await get(bot, appUrl, '/foo.png?params');
+	t.is(response.text, 'fallthrough');
 });
 
 test('excludes non-bot user agents by default', async t => {
 	const appUrl = await listen(makeApp({}));
 
-	const res = await get(human, appUrl, '/foo');
-	t.is(res.text, 'fallthrough');
+	const response = await get(human, appUrl, '/foo');
+	t.is(response.text, 'fallthrough');
 });
 
 test('respects custom user agent pattern', async t => {
 	const appUrl = await listen(makeApp({userAgentPattern: /borg/}));
 
-	const res1 = await get('humon', appUrl, '/foo');
-	t.is(res1.text, 'fallthrough');
+	const response1 = await get('humon', appUrl, '/foo');
+	t.is(response1.text, 'fallthrough');
 
-	const res2 = await get('borg', appUrl, '/foo');
-	t.true(Boolean(res2.get('Pupperender')));
+	const response2 = await get('borg', appUrl, '/foo');
+	t.true(Boolean(response2.get('Pupperender')));
 });
 
 test('respects custom exclude url pattern', async t => {
 	const appUrl = await listen(makeApp({excludeUrlPattern: /foo/}));
 
-	const res1 = await get(bot, appUrl, '/foo');
-	t.is(res1.text, 'fallthrough');
+	const response1 = await get(bot, appUrl, '/foo');
+	t.is(response1.text, 'fallthrough');
 
-	const res2 = await get(bot, appUrl, '/bar');
-	t.true(Boolean(res2.get('Pupperender')));
+	const response2 = await get(bot, appUrl, '/bar');
+	t.true(Boolean(response2.get('Pupperender')));
 });
 
 test('forwards page error status and body', async t => {
 	// This proxy always returns an error.
 	const appUrl = await listen(makeAppError({}));
 
-	const res = await get(bot, appUrl, '/error');
-	t.is(res.status, 500);
-	t.is(res.text, 'proxy error');
+	const response = await get(bot, appUrl, '/error');
+	t.is(response.status, 500);
+	t.is(response.text, 'proxy error');
 });
