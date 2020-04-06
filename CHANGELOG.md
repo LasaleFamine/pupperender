@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/LasaleFamine/pupperender/compare/v1.2.4...v2.0.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* drop node 8 ([36e9728](https://github.com/LasaleFamine/pupperender/commit/36e9728e99adae8e210b5c17a15abe61f5c9042b))
+* **package:** update puppeteer to version 2.1.1 ([d3c69f6](https://github.com/LasaleFamine/pupperender/commit/d3c69f63ee3086f095a1fbf6abc9b687f93b4606)), closes [#97](https://github.com/LasaleFamine/pupperender/issues/97)
+
 ### [1.2.4](https://github.com/LasaleFamine/pupperender/compare/v1.2.3...v1.2.4) (2019-12-01)
 
 
