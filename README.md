@@ -11,8 +11,6 @@ This is a fork of the [rendertron-middleware](https://www.npmjs.com/package/rend
 
 ## Install
 
-> NOTE: *Node >= 8.x is required.*
-
 ```
 $ yarn add pupperender
 ```
