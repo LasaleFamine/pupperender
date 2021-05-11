@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/LasaleFamine/pupperender/compare/v2.0.1...v3.0.0) (2021-05-11)
+
+
+### Bug Fixes
+
+* upgrade puppeteer from 5.3.1 to 5.4.0 ([baa8b8c](https://github.com/LasaleFamine/pupperender/commit/baa8b8cf4eb58acb5e7da96b5d05b6ab08e6398c))
+* upgrade puppeteer from 5.4.0 to 5.4.1 ([d0a3835](https://github.com/LasaleFamine/pupperender/commit/d0a3835c34e6ec8098232e41fa6241779b9881b6))
+* upgrade puppeteer from 5.4.1 to 5.5.0 ([b4da194](https://github.com/LasaleFamine/pupperender/commit/b4da194011c7945a2b92c54be9000c14b7d7b658))
+
 ### [2.0.1](https://github.com/LasaleFamine/pupperender/compare/v2.0.0...v2.0.1) (2020-10-01)
 
 ## [2.0.0](https://github.com/LasaleFamine/pupperender/compare/v1.2.4...v2.0.0) (2020-04-06)
