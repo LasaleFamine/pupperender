@@ -43,7 +43,7 @@
   "devDependencies": {
     "ava": "3.15.0",
     "codecov": "3.8.3",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "nyc": "15.1.0",
     "standard-version": "9.3.1",
     "supertest": "5.0.0",
