@@ -38,7 +38,7 @@
     "bot"
   ],
   "dependencies": {
-    "puppeteer": "21.3.6"
+    "puppeteer": "21.3.7"
   },
   "devDependencies": {
     "ava": "3.15.0",
