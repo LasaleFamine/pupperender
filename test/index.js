@@ -3,6 +3,7 @@
 const express = require('express');
 const supertest = require('supertest');
 const test = require('ava');
+const puppeteer = require('puppeteer');
 
 const pupperender = require('./../src');
 
@@ -128,6 +129,55 @@ test('respects custom user agent pattern', async t => {
 
 	const response2 = await get('borg', appUrl, '/foo');
 	t.true(Boolean(response2.get('Pupperender')));
+});
+
+test.serial('global user agent patterns match consistently across requests', async t => {
+	const originalLaunch = puppeteer.launch;
+	puppeteer.launch = async () => ({
+		newPage: async () => ({
+			goto: async () => {},
+			waitForTimeout: async () => {},
+			content: async () => '<html></html>'
+		}),
+		close: async () => {}
+	});
+
+	try {
+		const appUrl = await listen(makeApp({userAgentPattern: /borg/g}));
+		const excludedResponse = await get('borg', appUrl, '/foo.png');
+		const renderedResponse = await get('borg', appUrl, '/foo');
+		t.is(excludedResponse.text, 'fallthrough');
+		t.true(Boolean(renderedResponse.get('Pupperender')));
+	} finally {
+		puppeteer.launch = originalLaunch;
+	}
+});
+
+test.serial('global exclude URL patterns exclude consistently across requests', async t => {
+	const originalLaunch = puppeteer.launch;
+	let launchCount = 0;
+	puppeteer.launch = async () => {
+		launchCount++;
+		return {
+			newPage: async () => ({
+				goto: async () => {},
+				waitForTimeout: async () => {},
+				content: async () => '<html></html>'
+			}),
+			close: async () => {}
+		};
+	};
+
+	try {
+		const appUrl = await listen(makeApp({excludeUrlPattern: /foo/g}));
+		const response1 = await get(bot, appUrl, '/foo');
+		const response2 = await get(bot, appUrl, '/foo');
+		t.is(response1.text, 'fallthrough');
+		t.is(response2.text, 'fallthrough');
+		t.is(launchCount, 0);
+	} finally {
+		puppeteer.launch = originalLaunch;
+	}
 });
 
 test('respects custom exclude url pattern', async t => {

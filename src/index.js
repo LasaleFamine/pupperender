@@ -94,6 +94,16 @@ const pupperender = async (url, timeout) => {
 
 const cache = {};
 
+const matches = (pattern, value) => {
+	const {lastIndex} = pattern;
+	pattern.lastIndex = 0;
+	try {
+		return pattern.test(value);
+	} finally {
+		pattern.lastIndex = lastIndex;
+	}
+};
+
 module.exports.makeMiddleware = options => {
 	const DEBUG = options.debug;
 	const timeout = options.timeout || 5000; // ms
@@ -106,8 +116,8 @@ module.exports.makeMiddleware = options => {
 
 	return function (request, response, next) {
 		logger(DEBUG, `[pupperender middleware] USER AGENT: ${request.headers['user-agent']}`);
-		if (!userAgentPattern.test(request.headers['user-agent']) ||
-					excludeUrlPattern.test(request.path)) {
+		if (!matches(userAgentPattern, request.headers['user-agent']) ||
+					matches(excludeUrlPattern, request.path)) {
 			return next();
 		}
 
